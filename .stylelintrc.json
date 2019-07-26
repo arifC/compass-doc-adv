@@ -1,0 +1,10 @@
+{
+  "ignoreFiles" : [
+    "assets/css/compass-doc.scss",
+    "assets/css/dark-mode-preview.scss",
+    "_sass/vendor/**/*.scss"
+  ],
+  "extends": [
+    "stylelint-config-primer"
+  ]
+}

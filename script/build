@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo "Packaging gem... \n"
+gem build compass-doc.gemspec
+
+echo "Cleaning up... \n"
+git add *.gem
+git commit -m 'Bump compass-doc gem package'

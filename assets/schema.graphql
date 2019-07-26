@@ -1,0 +1,528 @@
+# Scalars
+
+scalar Any # -> interface{}
+
+scalar JSON # -> interface{}
+
+scalar Timestamp # -> time.Time
+
+scalar Tenant # -> String
+
+scalar HttpHeaders # -> map[string][]string
+
+scalar QueryParams # -> map[string][]string
+
+scalar CLOB # -> String
+
+scalar PageCursor # -> String
+
+# Label
+
+type Label {
+    key: String!
+    value: Any!
+}
+
+scalar Labels # -> map[string]interface{}
+
+type LabelDefinition {
+    key: String!
+    schema: JSON
+}
+
+input LabelDefinitionInput {
+    key: String!
+    schema: JSON
+}
+
+# Runtime
+
+type Runtime {
+    id: ID!
+    name: String!
+    description: String
+    labels(key: String): Labels!
+    status: RuntimeStatus!
+    
+    agentAuth: Auth!
+}
+
+type RuntimeStatus {
+    condition: RuntimeStatusCondition!
+    timestamp: Timestamp!
+}
+
+enum RuntimeStatusCondition {
+    INITIAL
+    READY
+    FAILED
+}
+
+# Application
+
+type Application {
+    id: ID!
+    name: String!
+    description: String
+    labels(key: String): Labels!
+    status: ApplicationStatus!
+    webhooks: [Webhook!]!
+    healthCheckURL: String
+    
+    apis(group: String, first: Int = 100, after: PageCursor): APIDefinitionPage!
+    
+    eventAPIs(group: String, first: Int = 100, after: PageCursor): EventAPIDefinitionPage!
+    documents(first: Int = 100, after: PageCursor): DocumentPage!
+}
+
+interface Pageable {
+    pageInfo: PageInfo!
+    totalCount: Int!
+}
+
+type PageInfo {
+    startCursor: PageCursor!
+    endCursor: PageCursor!
+    hasNextPage: Boolean!
+}
+
+type ApplicationPage implements Pageable {
+    data: [Application!]!
+    pageInfo: PageInfo!
+    totalCount: Int!
+}
+
+type RuntimePage implements Pageable {
+    data: [Runtime!]!
+    pageInfo: PageInfo!
+    totalCount: Int!
+}
+
+type HealthCheckPage implements Pageable {
+    data: [HealthCheck!]!
+    pageInfo: PageInfo!
+    totalCount: Int!
+}
+
+type APIDefinitionPage implements Pageable {
+    data: [APIDefinition!]!
+    pageInfo: PageInfo!
+    totalCount: Int!
+}
+type EventAPIDefinitionPage implements Pageable {
+    data: [EventAPIDefinition!]!
+    pageInfo: PageInfo!
+    totalCount: Int!
+}
+
+type DocumentPage implements Pageable {
+    data: [Document!]!
+    pageInfo: PageInfo!
+    totalCount: Int!
+}
+
+type ApplicationStatus {
+    condition: ApplicationStatusCondition!
+    timestamp: Timestamp!
+}
+
+enum ApplicationStatusCondition {
+    INITIAL
+    UNKNOWN
+    READY
+    FAILED
+}
+
+type Webhook {
+    id: ID!
+    applicationID: ID!
+    type: ApplicationWebhookType!
+    url: String!
+    auth: Auth
+}
+
+enum ApplicationWebhookType {
+    CONFIGURATION_CHANGED
+}
+
+# API
+
+type Version {
+    
+    value: String!
+    deprecated: Boolean
+    
+    deprecatedSince: String
+    
+    forRemoval: Boolean
+}
+
+type APIDefinition {
+    id: ID!
+    applicationID: ID!
+    name: String!
+    description: String
+    spec: APISpec
+    targetURL: String!
+    
+    group: String
+    
+    auth(runtimeID: ID!): RuntimeAuth
+    
+    auths: [RuntimeAuth!]!
+    
+    defaultAuth: Auth
+    version: Version
+}
+
+type RuntimeAuth {
+    runtimeID: ID!
+    auth: Auth
+}
+
+type APISpec {
+    
+    data: CLOB
+    format: SpecFormat!
+    type: APISpecType!
+    fetchRequest: FetchRequest
+}
+
+enum SpecFormat {
+    YAML
+    JSON
+}
+
+enum APISpecType {
+    ODATA,
+    OPEN_API
+}
+
+enum EventAPISpecType {
+    ASYNC_API
+}
+
+# Event
+
+type EventAPIDefinition {
+    id: ID!
+    applicationID: ID!
+    name: String!
+    description: String
+    
+    group: String
+    spec: EventAPISpec!
+    version: Version
+}
+
+type EventAPISpec {
+    data: CLOB
+    type: EventAPISpecType!
+    format: SpecFormat!
+    fetchRequest: FetchRequest
+}
+
+# Document
+
+type Document {
+    id: ID!
+    applicationID: ID!
+    title: String!
+    displayName: String!
+    description: String!
+    format: DocumentFormat!
+    
+    kind: String
+    data: CLOB
+    fetchRequest: FetchRequest
+}
+
+enum DocumentFormat {
+    MARKDOWN
+}
+
+
+
+type FetchRequest {
+    url: String!
+    auth: Auth
+    mode: FetchMode!
+    filter: String
+    status: FetchRequestStatus!
+}
+
+type FetchRequestStatus {
+    condition: FetchRequestStatusCondition!
+    timestamp: Timestamp!
+}
+
+enum FetchRequestStatusCondition {
+    INITIAL
+    SUCCEEDED
+    FAILED
+}
+
+enum FetchMode {
+    SINGLE
+    PACKAGE
+    INDEX
+}
+
+# Authentication
+type Auth {
+    credential: CredentialData!
+    additionalHeaders: HttpHeaders
+    additionalQueryParams: QueryParams
+    requestAuth: CredentialRequestAuth
+}
+
+union CredentialData = BasicCredentialData | OAuthCredentialData
+
+type OAuthCredentialData {
+    clientId: ID!
+    clientSecret: String!
+    url: String!
+}
+
+type BasicCredentialData {
+    username: String!
+    password: String!
+}
+
+type CredentialRequestAuth {
+    csrf: CSRFTokenCredentialRequestAuth
+}
+
+type CSRFTokenCredentialRequestAuth {
+    tokenEndpointURL: String!
+    credential: CredentialData!
+    additionalHeaders: HttpHeaders
+    additionalQueryParams: QueryParams
+}
+
+# HealthCheck
+
+enum HealthCheckStatusCondition {
+    SUCCEEDED
+    FAILED
+}
+
+enum HealthCheckType {
+    MANAGEMENT_PLANE_APPLICATION_HEALTHCHECK
+}
+
+type HealthCheck {
+    type: HealthCheckType!
+    condition: HealthCheckStatusCondition!
+    origin: ID
+    message: String
+    timestamp: Timestamp!
+}
+
+
+# INPUTS
+
+# Application Input
+
+input ApplicationInput {
+    name: String!
+    description: String
+    labels: Labels
+    webhooks: [WebhookInput!]
+    healthCheckURL: String
+    apis: [APIDefinitionInput!]
+    eventAPIs: [EventAPIDefinitionInput!]
+    documents: [DocumentInput!]
+}
+
+# Runtime Input
+
+input RuntimeInput {
+    name: String!
+    description: String
+    labels: Labels
+}
+
+# FetchRequest Input
+
+input FetchRequestInput {
+    url: String!
+    auth: AuthInput
+    mode: FetchMode = SINGLE
+    filter: String
+}
+
+# Webhook Input
+
+input WebhookInput {
+    type: ApplicationWebhookType!
+    url: String!
+    auth: AuthInput
+}
+
+# API Input
+# You can specify defaultAuth to specify Auth used for all runtimes. If you want to specify auth only for a dedicated Runtime,
+# you need to perform separate mutation setAPIAuth.
+input APIDefinitionInput {
+    name: String!
+    description: String
+    targetURL: String!
+    group: String
+    spec: APISpecInput
+    version: VersionInput
+    defaultAuth: AuthInput
+}
+
+input VersionInput {
+    value: String!
+    deprecated: Boolean = false
+    deprecatedSince: String
+    forRemoval: Boolean = false
+}
+
+
+input APISpecInput {
+    data: CLOB
+    type: APISpecType!
+    format: SpecFormat!
+    fetchRequest: FetchRequestInput
+}
+
+# Event Input
+
+input EventAPIDefinitionInput {
+    name: String!
+    description: String
+    spec: EventAPISpecInput!
+    group: String
+    version: VersionInput
+}
+
+input EventAPISpecInput {
+    data: CLOB
+    eventSpecType: EventAPISpecType!
+    format: SpecFormat!
+    fetchRequest: FetchRequestInput
+}
+
+# Document Input
+
+input DocumentInput {
+    title: String!
+    displayName: String!
+    description: String!
+    format: DocumentFormat!
+    kind: String
+    data: CLOB
+    fetchRequest: FetchRequestInput
+}
+
+
+# Auth Input
+
+input AuthInput {
+    credential: CredentialDataInput!
+    additionalHeaders: HttpHeaders
+    additionalQueryParams: QueryParams
+    requestAuth: CredentialRequestAuthInput
+}
+
+input CredentialRequestAuthInput {
+    csrf: CSRFTokenCredentialRequestAuthInput
+}
+
+input CSRFTokenCredentialRequestAuthInput {
+    tokenEndpointURL: String!
+    credential: CredentialDataInput!
+    additionalHeaders: HttpHeaders
+    additionalQueryParams: QueryParams
+}
+
+input CredentialDataInput {
+    basic: BasicCredentialDataInput
+    oauth: OAuthCredentialDataInput
+}
+
+input OAuthCredentialDataInput {
+    clientId: ID!
+    clientSecret: String!
+    url: String!
+}
+
+input BasicCredentialDataInput {
+    username: String!
+    password: String!
+}
+
+input LabelFilter {
+    
+    key: String!
+    query: String
+}
+
+
+type Query {
+    applications(filter: [LabelFilter!], first: Int = 100, after: PageCursor):  ApplicationPage!
+    application(id: ID!): Application
+
+    runtimes(filter: [LabelFilter!], first: Int = 100, after: PageCursor): RuntimePage!
+    runtime(id: ID!): Runtime
+
+    labelDefinitions: [LabelDefinition!]!
+    labelDefinition(key: String!): LabelDefinition
+
+    healthChecks(types: [HealthCheckType!], origin: ID, first: Int = 100, after: PageCursor): HealthCheckPage!
+}
+
+type Mutation {
+    # Application
+    createApplication(in: ApplicationInput!): Application!
+    updateApplication(id: ID!, in: ApplicationInput!): Application!
+    deleteApplication(id: ID!): Application
+
+    # Runtime
+    createRuntime(in: RuntimeInput!): Runtime!
+    updateRuntime(id: ID!, in: RuntimeInput!): Runtime!
+    deleteRuntime(id: ID!): Runtime
+
+    # Webhook
+    addWebhook(applicationID: ID!, in: WebhookInput!): Webhook!
+    updateWebhook(webhookID: ID!, in: WebhookInput!): Webhook!
+    deleteWebhook(webhookID: ID!): Webhook
+
+    # API
+    addAPI(applicationID: ID!, in: APIDefinitionInput!): APIDefinition!
+    updateAPI(id: ID!, in: APIDefinitionInput!): APIDefinition!
+    deleteAPI(id: ID!): APIDefinition
+    refetchAPISpec(apiID: ID!): APISpec
+
+    
+    setAPIAuth(apiID: ID!, runtimeID: ID!, in: AuthInput!): RuntimeAuth!
+    deleteAPIAuth(apiID: ID!, runtimeID: ID!): RuntimeAuth!
+
+    # Event API
+    addEventAPI(applicationID: ID!, in: EventAPIDefinitionInput!): EventAPIDefinition!
+    updateEventAPI(id: ID!, in: EventAPIDefinitionInput!): EventAPIDefinition!
+    deleteEventAPI(id: ID!): EventAPIDefinition
+    refetchEventAPISpec(eventID: ID!): EventAPISpec
+
+    # Document
+    addDocument(applicationID: ID!, in: DocumentInput!): Document!
+    deleteDocument(id: ID!): Document
+
+    # LabelDefinition
+    createLabelDefinition(in: LabelDefinitionInput!): LabelDefinition!
+    updateLabelDefinition(in: LabelDefinitionInput!): LabelDefinition!
+    deleteLabelDefinition(key: String!, deleteRelatedLabels: Boolean=false): LabelDefinition!
+
+    # Label
+    
+    setApplicationLabel(applicationID: ID!, key: String!, value: Any!): Label!
+    
+    deleteApplicationLabel(applicationID: ID!, key: String!): Label!
+
+    
+    setRuntimeLabel(runtimeID: ID!, key: String!, value: Any!): Label!
+    
+    deleteRuntimeLabel(runtimeID: ID!, key: String!): Label!
+}

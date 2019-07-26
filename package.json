@@ -1,0 +1,18 @@
+{
+  "name": "compass-doc",
+  "version": "0.2.5",
+  "description": "A modern Jekyll theme for documentation",
+  "repository": "arifc/compass-doc",
+  "license": "MIT",
+  "devDependencies": {
+    "stylelint": "^10.0.1",
+    "stylelint-config-primer": "^7.0.0",
+    "stylelint-selector-no-utility": "^4.0.0"
+  },
+  "dependencies": {
+    "@primer/css": "^12.3.1"
+  },
+  "scripts": {
+    "test": "stylelint '**/*.scss'"
+  }
+}
