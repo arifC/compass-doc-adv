@@ -1,0 +1,15 @@
+# Create runtimes
+mutation {
+	createRuntime(
+		in: { 
+			name: "first-runtime"
+			description: "This is my first runtime."
+			labels: { group: ["production"]}
+		}
+	) {
+		id
+		name
+	}
+}
+
+# Create applications

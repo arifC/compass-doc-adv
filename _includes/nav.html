@@ -3,6 +3,9 @@
     {% assign pages_list = site.html_pages | sort:"nav_order" %}
     {% for node in pages_list %}
       {% unless node.nav_exclude %}
+        {% if node.title == "Tasks" %}
+          <hr style="margin: 1rem"/>
+        {% endif %}
         {% if node.parent == nil %}
           <li class="navigation-list-item{% if page.url == node.url or page.parent == node.title or page.grand_parent == node.title %} active{% endif %}">
             {% if page.parent == node.title or page.grand_parent == node.title %}
