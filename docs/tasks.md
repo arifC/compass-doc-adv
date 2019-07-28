@@ -12,7 +12,7 @@ This page contains the three challenges to solve during this study. They increas
 ## Task 1 - Runtime Status
 
 **Description**  
-The system already manages some runtimes. We would like to know the status of the runtime with the name "Production". The status includes the condition and the timestamp. We need both information for this task.
+The system already manages some runtimes. We would like to know the status of the runtime with the name "production". The status includes the condition and the timestamp. We need both information for this task.
 
 **Acceptance Criteria**  
 Output shows:  

@@ -1,29 +1,25 @@
-# Scalars
+scalar Any 
 
-scalar Any # -> interface{}
+scalar JSON 
 
-scalar JSON # -> interface{}
+scalar Timestamp 
 
-scalar Timestamp # -> time.Time
+scalar Tenant 
 
-scalar Tenant # -> String
+scalar HttpHeaders 
 
-scalar HttpHeaders # -> map[string][]string
+scalar QueryParams 
 
-scalar QueryParams # -> map[string][]string
+scalar CLOB 
 
-scalar CLOB # -> String
-
-scalar PageCursor # -> String
-
-# Label
+scalar PageCursor 
 
 type Label {
     key: String!
     value: Any!
 }
 
-scalar Labels # -> map[string]interface{}
+scalar Labels 
 
 type LabelDefinition {
     key: String!
@@ -35,18 +31,17 @@ input LabelDefinitionInput {
     schema: JSON
 }
 
-# Runtime
-
+# Clusters running Kyma and a Compass agent.
 type Runtime {
     id: ID!
     name: String!
     description: String
     labels(key: String): Labels!
     status: RuntimeStatus!
-    
     agentAuth: Auth!
 }
 
+# Current condition with the timestamp of the last change.
 type RuntimeStatus {
     condition: RuntimeStatusCondition!
     timestamp: Timestamp!
@@ -58,8 +53,7 @@ enum RuntimeStatusCondition {
     FAILED
 }
 
-# Application
-
+# External systems outside Runtimes that expose APIs and Events. Applications are connected to runtimes to ensure trusted communication.
 type Application {
     id: ID!
     name: String!
@@ -68,10 +62,11 @@ type Application {
     status: ApplicationStatus!
     webhooks: [Webhook!]!
     healthCheckURL: String
-    
+    # API exposed by Application
     apis(group: String, first: Int = 100, after: PageCursor): APIDefinitionPage!
-    
+    # Events exposes by Application
     eventAPIs(group: String, first: Int = 100, after: PageCursor): EventAPIDefinitionPage!
+    # Describe the Application and its exposed APIs.
     documents(first: Int = 100, after: PageCursor): DocumentPage!
 }
 
@@ -109,6 +104,7 @@ type APIDefinitionPage implements Pageable {
     pageInfo: PageInfo!
     totalCount: Int!
 }
+
 type EventAPIDefinitionPage implements Pageable {
     data: [EventAPIDefinition!]!
     pageInfo: PageInfo!
@@ -133,6 +129,7 @@ enum ApplicationStatusCondition {
     FAILED
 }
 
+# An address of an Application for callbacks and asynchronous information exchange.
 type Webhook {
     id: ID!
     applicationID: ID!
@@ -145,15 +142,10 @@ enum ApplicationWebhookType {
     CONFIGURATION_CHANGED
 }
 
-# API
-
 type Version {
-    
     value: String!
     deprecated: Boolean
-    
     deprecatedSince: String
-    
     forRemoval: Boolean
 }
 
@@ -164,13 +156,9 @@ type APIDefinition {
     description: String
     spec: APISpec
     targetURL: String!
-    
     group: String
-    
     auth(runtimeID: ID!): RuntimeAuth
-    
     auths: [RuntimeAuth!]!
-    
     defaultAuth: Auth
     version: Version
 }
@@ -180,8 +168,8 @@ type RuntimeAuth {
     auth: Auth
 }
 
+# Contains the data, format, and type of the technical specification.
 type APISpec {
-    
     data: CLOB
     format: SpecFormat!
     type: APISpecType!
@@ -202,14 +190,12 @@ enum EventAPISpecType {
     ASYNC_API
 }
 
-# Event
-
+# Contains the data, format, and type of the technical specification.
 type EventAPIDefinition {
     id: ID!
     applicationID: ID!
     name: String!
     description: String
-    
     group: String
     spec: EventAPISpec!
     version: Version
@@ -222,8 +208,7 @@ type EventAPISpec {
     fetchRequest: FetchRequest
 }
 
-# Document
-
+# Describes attached information for Applications such as technical documentations.
 type Document {
     id: ID!
     applicationID: ID!
@@ -231,7 +216,6 @@ type Document {
     displayName: String!
     description: String!
     format: DocumentFormat!
-    
     kind: String
     data: CLOB
     fetchRequest: FetchRequest
@@ -240,8 +224,6 @@ type Document {
 enum DocumentFormat {
     MARKDOWN
 }
-
-
 
 type FetchRequest {
     url: String!
@@ -268,7 +250,7 @@ enum FetchMode {
     INDEX
 }
 
-# Authentication
+# Authentication method for Runtimes
 type Auth {
     credential: CredentialData!
     additionalHeaders: HttpHeaders
@@ -300,8 +282,6 @@ type CSRFTokenCredentialRequestAuth {
     additionalQueryParams: QueryParams
 }
 
-# HealthCheck
-
 enum HealthCheckStatusCondition {
     SUCCEEDED
     FAILED
@@ -319,11 +299,6 @@ type HealthCheck {
     timestamp: Timestamp!
 }
 
-
-# INPUTS
-
-# Application Input
-
 input ApplicationInput {
     name: String!
     description: String
@@ -335,15 +310,11 @@ input ApplicationInput {
     documents: [DocumentInput!]
 }
 
-# Runtime Input
-
 input RuntimeInput {
     name: String!
     description: String
     labels: Labels
 }
-
-# FetchRequest Input
 
 input FetchRequestInput {
     url: String!
@@ -352,17 +323,12 @@ input FetchRequestInput {
     filter: String
 }
 
-# Webhook Input
-
 input WebhookInput {
     type: ApplicationWebhookType!
     url: String!
     auth: AuthInput
 }
 
-# API Input
-# You can specify defaultAuth to specify Auth used for all runtimes. If you want to specify auth only for a dedicated Runtime,
-# you need to perform separate mutation setAPIAuth.
 input APIDefinitionInput {
     name: String!
     description: String
@@ -380,15 +346,12 @@ input VersionInput {
     forRemoval: Boolean = false
 }
 
-
 input APISpecInput {
     data: CLOB
     type: APISpecType!
     format: SpecFormat!
     fetchRequest: FetchRequestInput
 }
-
-# Event Input
 
 input EventAPIDefinitionInput {
     name: String!
@@ -405,8 +368,6 @@ input EventAPISpecInput {
     fetchRequest: FetchRequestInput
 }
 
-# Document Input
-
 input DocumentInput {
     title: String!
     displayName: String!
@@ -416,9 +377,6 @@ input DocumentInput {
     data: CLOB
     fetchRequest: FetchRequestInput
 }
-
-
-# Auth Input
 
 input AuthInput {
     credential: CredentialDataInput!
@@ -455,11 +413,9 @@ input BasicCredentialDataInput {
 }
 
 input LabelFilter {
-    
     key: String!
     query: String
 }
-
 
 type Query {
     applications(filter: [LabelFilter!], first: Int = 100, after: PageCursor):  ApplicationPage!
@@ -475,54 +431,41 @@ type Query {
 }
 
 type Mutation {
-    # Application
     createApplication(in: ApplicationInput!): Application!
     updateApplication(id: ID!, in: ApplicationInput!): Application!
     deleteApplication(id: ID!): Application
 
-    # Runtime
     createRuntime(in: RuntimeInput!): Runtime!
     updateRuntime(id: ID!, in: RuntimeInput!): Runtime!
     deleteRuntime(id: ID!): Runtime
 
-    # Webhook
     addWebhook(applicationID: ID!, in: WebhookInput!): Webhook!
     updateWebhook(webhookID: ID!, in: WebhookInput!): Webhook!
     deleteWebhook(webhookID: ID!): Webhook
 
-    # API
     addAPI(applicationID: ID!, in: APIDefinitionInput!): APIDefinition!
     updateAPI(id: ID!, in: APIDefinitionInput!): APIDefinition!
     deleteAPI(id: ID!): APIDefinition
     refetchAPISpec(apiID: ID!): APISpec
 
-    
     setAPIAuth(apiID: ID!, runtimeID: ID!, in: AuthInput!): RuntimeAuth!
     deleteAPIAuth(apiID: ID!, runtimeID: ID!): RuntimeAuth!
 
-    # Event API
     addEventAPI(applicationID: ID!, in: EventAPIDefinitionInput!): EventAPIDefinition!
     updateEventAPI(id: ID!, in: EventAPIDefinitionInput!): EventAPIDefinition!
     deleteEventAPI(id: ID!): EventAPIDefinition
     refetchEventAPISpec(eventID: ID!): EventAPISpec
 
-    # Document
     addDocument(applicationID: ID!, in: DocumentInput!): Document!
     deleteDocument(id: ID!): Document
 
-    # LabelDefinition
     createLabelDefinition(in: LabelDefinitionInput!): LabelDefinition!
     updateLabelDefinition(in: LabelDefinitionInput!): LabelDefinition!
     deleteLabelDefinition(key: String!, deleteRelatedLabels: Boolean=false): LabelDefinition!
-
-    # Label
     
     setApplicationLabel(applicationID: ID!, key: String!, value: Any!): Label!
-    
     deleteApplicationLabel(applicationID: ID!, key: String!): Label!
 
-    
     setRuntimeLabel(runtimeID: ID!, key: String!, value: Any!): Label!
-    
     deleteRuntimeLabel(runtimeID: ID!, key: String!): Label!
 }

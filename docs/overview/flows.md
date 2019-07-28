@@ -3,6 +3,7 @@ layout: default
 title: Flows
 nav_order: 4
 parent: Overview
+permalink: docs/overview/flows
 ---
 
 # Flows

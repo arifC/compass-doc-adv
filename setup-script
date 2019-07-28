@@ -2,9 +2,35 @@
 mutation {
 	createRuntime(
 		in: { 
-			name: "first-runtime"
+			name: "development"
+			description: "Only for Dev purposes."
+			labels: { group: ["dev"]}
+		}
+	) {
+		id
+		name
+	}
+}
+
+mutation {
+	createRuntime(
+		in: { 
+			name: "production"
 			description: "This is my first runtime."
-			labels: { group: ["production"]}
+			labels: { group: ["prod"]}
+		}
+	) {
+		id
+		name
+	}
+}
+
+mutation {
+	createRuntime(
+		in: { 
+			name: "staging"
+			description: "This is my first runtime."
+			labels: { group: ["staging"]}
 		}
 	) {
 		id
@@ -13,3 +39,71 @@ mutation {
 }
 
 # Create applications
+mutation {
+	createApplication(in: { 
+		name: "test"
+		description: "test"
+		labels: {group: ["dev"]}
+		apis: {
+			name: "test"
+			targetURL: "test"
+			version: {
+				value: "v1.0"
+			}
+			spec: {
+				type: OPEN_API
+				format: YAML
+			}
+		}
+	}) 
+	{
+		id
+		name
+		description
+		apis {
+			data {
+				name
+				spec {
+					format
+					type
+				}
+				targetURL
+				version {value}
+			}
+		}
+		eventAPIs {
+			data {
+				name
+				spec {
+					format
+					type
+				}
+				version {value}
+			}
+		}
+	}
+}
+
+mutation {
+	createApplication(in: { 
+		name: "test"
+		description: "test"
+		labels: {group: ["dev"]}
+		apis: {
+			name: "test"
+			targetURL: "test"
+			version: {
+				value: "v1.0"
+			}
+			spec: {
+				type: OPEN_API
+				format: YAML
+			}
+		}
+	}) 
+	{
+		id
+		name
+		description
+	}
+}

@@ -174,3 +174,10 @@ else if (document.addEventListener) document.addEventListener('DOMContentLoaded'
 else document.attachEvent('onreadystatechange', function(){
     if (document.readyState=='complete') ready();
 });
+
+// Customization
+function doSth() {
+  var textarea = document.getElementById("example");
+
+  textarea.select();
+}

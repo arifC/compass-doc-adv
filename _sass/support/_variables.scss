@@ -57,7 +57,7 @@ $code-background-color: $grey-lt-000 !default;
 $body-text-color: $grey-dk-100 !default;
 $body-heading-color: $grey-dk-300 !default;
 $nav-child-link-color: $grey-dk-100 !default;
-$link-color: $purple-000 !default;
+$link-color: $blue-100 !default;
 $btn-primary-color: $purple-100 !default;
 $base-button-color: #f7f7f7 !default;
 
@@ -119,12 +119,12 @@ $border-color: $grey-lt-100 !default;
 $gutter-spacing: $sp-6 !default;
 $gutter-spacing-sm: $sp-4 !default;
 $nav-width: 232px !default;
-$content-width: 800px !default;
+$content-width: 900px !default;
 
 $media-queries: (
   xs: 320px,
   sm: 500px,
   md: 740px,
-  lg: 800px,
+  lg: 900px,
   xl: 1316px
 ) !default;

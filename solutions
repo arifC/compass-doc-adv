@@ -1,0 +1,59 @@
+# Task 1 - Runtime Status
+query {
+	runtime(id: "b144ac7d-84ed-4e7b-bcb6-0e93f2e6228d") { 
+		name
+		status {
+			condition
+			timestamp
+		}
+	}
+	}
+
+# Task 2 - Application with Document
+mutation {
+	createApplication(
+		in: {
+			name: "application-with-document"
+			description: "test"
+			documents: [
+				{
+					format: MARKDOWN
+					data: "Compass (aka Management Plane Services) provides ways to register, group, and manage your applications across multiple Kyma runtimes in a multi-tenant fashion."
+					title: "docu"
+					displayName: "docu"
+					description: "docuu"
+				}
+			]
+		}
+	) {
+		id
+		name
+		documents {
+			data {
+				title
+				format
+				data
+			}
+		}
+	}
+}
+
+# Task 3 - Add API to Application
+mutation {
+	addAPI(
+		in: {
+			name: "test"
+			targetURL: "test"
+			spec: { type: OPEN_API, format: JSON }
+		}
+		applicationID: "484628d3-6003-4e29-920d-feb31e5acb4d"
+	) {
+		id
+		applicationID
+		targetURL
+		spec {
+			format
+			type
+		}
+	}
+}
