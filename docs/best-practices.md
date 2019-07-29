@@ -69,12 +69,6 @@ Use a new tab for each request you issue!
 
 ![new-tabs](/assets/images/new-tabs.png)
 
-### Use the embedded resources
-
-The playground has a documentation and schema embedded. Use the search function to get along easily.
-
-![embedded-resources](/assets/images/embedded-resources.png)
-
 ### Prettify your requests
 
 Use the **"Prettify"** button to bring some structure to bigger requests.

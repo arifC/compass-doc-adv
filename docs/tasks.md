@@ -16,7 +16,7 @@ The system already manages some runtimes. We would like to know the status of th
 
 **Acceptance Criteria**  
 Output shows:  
-- name and id of runtime "Production"
+- name and id of runtime "production"
 - timestamp and condition
 
 ---
@@ -24,7 +24,7 @@ Output shows:
 ## Task 2 - Application with Documents
 
 **Description**  
-Suppose we want to register an application that represents Compass itself. Applications can also contain "Documents" which ideally contain some descriptive information about the application. Create an application that contains one document. The document is a markdown document and contains the "General Information" sentence from the [Introduction](/) page.
+Suppose we want to create an application that represents Compass itself. Applications can also contain "Documents" which ideally contain some descriptive information about the application. Create an application that contains one document. The document is a markdown document and contains the "General Information" sentence from the [Introduction](/) page.
 
 **Acceptance Criteria**  
 Output shows:  
@@ -36,7 +36,7 @@ Output shows:
 ## Task 3 - Add API to Application
 
 **Description**  
-Now we will also register an API for our application. Update our recently create application by adding an API to it. The specification and version of the API must be in line with the other applications which are already registered. The targetURL for our API will be the one you can find in the address bar of the playground.
+Now we will also create an API for our application. The recently created application only has a document so far (Task 2). In this task you will add the API. The specification and version of this API must be in line with the other application (name: `existingApplication`) which is already in the system. The targetURL for our API will be the one you can find in the address bar of the playground.
 
 **Acceptance Criteria**  
 Output shows:  

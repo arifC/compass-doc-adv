@@ -13,6 +13,23 @@ This page covers some common examples of using Compass. While working on the sam
 
 ## Runtime
 
+### Create a runtime
+
+```graphql
+mutation {
+  createRuntime(
+    in: { 
+      name: "first-runtime"
+      description: "This is my first runtime."
+      labels: { group: ["production"]}
+    }
+  ) {
+    id
+    name
+  }
+}
+```
+
 ### Get all runtimes
 
 ```graphql
@@ -43,6 +60,32 @@ query {
 
 ## Application
 
+### Create an application
+
+```graphql
+mutation {
+  createApplication(
+    in: {
+      name: "first-application"
+      description: "This is my first application."
+      labels: { group: ["production"] }
+      apis: [
+        {
+          name: "v1"
+          description: "API of our first application."
+          targetURL: "www.example.com/api"
+          spec: { data: "<API-SPEC>", type: OPEN_API, format: YAML }
+        }
+      ]
+    }
+  ) {
+    id
+    name
+    description
+  }
+}
+```
+
 ### Get all applications
 
 ```graphql
@@ -60,6 +103,38 @@ query {
       documents {
         data {
           title
+        }
+      }
+    }
+  }
+}
+```
+
+Alternative:
+
+```graphql
+query {
+  applications {
+    data {
+      id
+      name
+      description
+      labels
+      apis {
+        data {
+          name
+          spec {
+            type
+          }
+          targetURL
+        }
+      }
+      eventAPIs {
+        data {
+          name
+          spec {
+            type
+          }
         }
       }
     }

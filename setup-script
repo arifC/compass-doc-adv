@@ -16,7 +16,7 @@ mutation {
 	createRuntime(
 		in: { 
 			name: "production"
-			description: "This is my first runtime."
+			description: "This is the production runtime."
 			labels: { group: ["prod"]}
 		}
 	) {
@@ -41,12 +41,12 @@ mutation {
 # Create applications
 mutation {
 	createApplication(in: { 
-		name: "test"
-		description: "test"
+		name: "existing-application"
+		description: "Some application"
 		labels: {group: ["dev"]}
 		apis: {
-			name: "test"
-			targetURL: "test"
+			name: "any-api"
+			targetURL: "www.example.com"
 			version: {
 				value: "v1.0"
 			}
@@ -81,29 +81,5 @@ mutation {
 				version {value}
 			}
 		}
-	}
-}
-
-mutation {
-	createApplication(in: { 
-		name: "test"
-		description: "test"
-		labels: {group: ["dev"]}
-		apis: {
-			name: "test"
-			targetURL: "test"
-			version: {
-				value: "v1.0"
-			}
-			spec: {
-				type: OPEN_API
-				format: YAML
-			}
-		}
-	}) 
-	{
-		id
-		name
-		description
 	}
 }

@@ -63,13 +63,14 @@ mutation {
       name: "sap-erp"
       description: "The ERP system of the company with its APIs."
       labels: { group: ["prod", "dev"] }
-      documents: {
-        title: "ERP Handbook"
-        displayName: "erp-handbook"
-        description: "This handbook contains the documentation of this application."
-        format: MARKDOWN
-        data: "All the information about our ERP."
-      }
+      apis: [
+        {
+          name: "v1"
+          description: "API of our ERP application."
+          targetURL: "www.example.com/api"
+          spec: { data: "<API-SPEC>", type: OPEN_API, format: YAML }
+        }
+      ]
     }
   ) {
     id
