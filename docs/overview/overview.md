@@ -13,9 +13,9 @@ This page is intended to present the use cases and general information on Compas
 ## What is Compass?
 
 With Compass you can manage multiple Kyma runtimes and their connected applications in a multi-tenant way. The capabilities of Compass comprise the following features:
-- Runtime management: CRUD, Labels, Agents
-- Application management: CRUD, Labels, APIs/Events, Webhooks
-- Setting up health checks
+- **Runtime management:** CRUD, Labels, Agents
+- **Application management:** CRUD, Labels, APIs/Events, Webhooks
+- Setting up **health checks**
 
 ---
 

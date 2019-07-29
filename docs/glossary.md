@@ -46,6 +46,11 @@ The multi-tenant system which allows to:
 
 Any system that can configure itself according to the configuration provided by the *Management Plane*. Takes care about a customer workload.
 
+### Runtime Status
+
+The runtime status consists of the condition and timestamp of a Runtime.  
+The condition can have the values `INITIAL`, `READY` or `FAILED`. This indicates the health of the runtime. The timestamp shows when the Runtime changed its condition to the current one.
+
 ### Runtime Agent
 Abbr.: *Agent*  
 

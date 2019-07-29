@@ -7,7 +7,9 @@ permalink: /docs/tutorial
 
 # Tutorial
 
-In this tutorial we will demonstrate some very common uses of Compass. We start with a blank landscape and will create every component ourselved until we have reached a state that is representative to what most customers have.
+In this tutorial we will demonstrate some very common uses of Compass. We start with a blank landscape and will create every component ourselved until we have reached a state that is representative to what most customers have. We recommend using the [GraphQL Playground](https://director.compass.cluster.extend.cx.cloud.sap/) to walk through the tutorial. Alternatively, you can use the following button to import a Postman collection:
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/8605900361a34a6f4100)
 
 In our case, we will imagine a large enterprise which has some applications that need to be connected to cluster runtimes. We will also talk through some realistic changes.
 
@@ -18,7 +20,7 @@ In our case, we will imagine a large enterprise which has some applications that
 
 ## Setting up the landscape
 
-We will create our two Runtimes ("**prod**" and "**dev**") first. After, we can create our Application in a plain version without any APIs. These requests create the runtimes:
+We will create our two Runtimes (**prod** and **dev**) first. After, we can create our Application in a plain version without any APIs. These requests create the runtimes:
 
 ```graphql
 mutation {
@@ -129,4 +131,42 @@ mutation {
 }
 ```
 
-Now we have added a webhook to our Application that can react on changed configurations. 
+## Updating a Webhook
+
+Now we have added a webhook to our Application that can react on changed configurations. But often even the webhook endpoints of an API might change. Our ERP application now has a new version of its webhook. To deal with this, we will use the mutation `updateWebhook`.
+
+Again, we first find the id of our webhook because it is a necessary input parameter for the mutation:
+
+```graphql
+query {
+  applications {
+    data {
+      id
+      name
+      webhooks {
+        type
+        url
+        id
+      }
+    }
+  }
+}
+```
+
+The response will contain the webhook id which can be used to create the `updateWebhook` mutation:
+
+```graphql
+mutation {
+  updateWebhook(
+    webhookID: "3c0894de-60f5-4fb1-9c85-cd62c1f36250"
+    in: { 
+      type: CONFIGURATION_CHANGED
+      url: "https://www.erp.company/hook/v2"
+    }
+  ) {
+    id
+    type
+    url
+  }
+}
+```

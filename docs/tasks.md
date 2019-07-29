@@ -19,6 +19,8 @@ Output shows:
 - name and id of runtime "Production"
 - timestamp and condition
 
+---
+
 ## Task 2 - Application with Documents
 
 **Description**  
@@ -28,6 +30,8 @@ Suppose we want to register an application that represents Compass itself. Appli
 Output shows:  
 - name and id of created application
 - title, format, and data of document in the application
+
+---
 
 ## Task 3 - Add API to Application
 

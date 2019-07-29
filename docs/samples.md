@@ -7,7 +7,9 @@ permalink: /docs/samples
 
 # Samples
 
-This page covers some common examples of using Compass. While working on the samples in the [Playground](https://director.compass.cluster.extend.cx.cloud.sap) please make sure to set the `tenant` header to `samples`.
+This page covers some common examples of using Compass. While working on the samples in the [Playground](https://director.compass.cluster.extend.cx.cloud.sap) please make sure to set the `tenant` header to `samples`. You can also use a Postman collection to work on the examples locally:  
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/8605900361a34a6f4100)
 
 ## Runtime
 
