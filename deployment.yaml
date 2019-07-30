@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: docs-adv
+  labels:
+    app: docs-adv
+  annotations:
+    auth.istio.io/8080: NONE
+spec:
+  ports:
+  - name: http
+    port: 4000
+  type: NodePort
+  selector:
+    app: docs-adv
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: docs-adv
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: docs-adv
+      annotations:
+        sidecar.istio.io/inject: "true"
+    spec:
+      containers:
+      - name: docs-adv
+        image: docker.io/arifcrtsap/docs-adv:latest
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 4000
