@@ -6,7 +6,7 @@ description: "Compass (also known as Management Plane Services) is a multi-tenan
 permalink: /
 ---
 
-# General information
+# General Information
 
 Compass (aka Management Plane Services) provides ways to register, group, and manage your applications across multiple Kyma runtimes in a multi-tenant fashion.
 {: .fs-6 .fw-400}
@@ -24,6 +24,6 @@ To read about the concepts behind Compass, the different components, and the ter
 
 To start learning about API requests, specification, and the GraphQL API Playground, use one of these buttons or the navigation on the left:  
 
-[First steps](/docs/getting-started){: .btn .btn-blue .mr-2 }
+[Tutorial](/docs/tutorial){: .btn .btn-blue .mr-2 }
 [Specification](/assets/graphql-doc/index.html){: .btn .btn-blue .mr-2 }
 [Playground](https://director.compass.cluster.extend.cx.cloud.sap){: .btn .btn-blue }

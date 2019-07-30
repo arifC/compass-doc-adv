@@ -36,7 +36,7 @@ Output shows:
 ## Task 3 - Add API to Application
 
 **Description**  
-Now we will also create an API for our application. The recently created application only has a document so far (Task 2). In this task you will add the API. The specification and version of this API must be in line with the other application (name: `existingApplication`) which is already in the system. The targetURL for our API will be the one you can find in the address bar of the playground.
+Now we will also create an API for our application. The recently created application only has a document so far. In this task you will add the API. The specification and version of this API must be in line with the other application (name: `existingApplication`) which is already in the system. The targetURL for our API will be the one you can find in the address bar of the playground.
 
 **Acceptance Criteria**  
 Output shows:  

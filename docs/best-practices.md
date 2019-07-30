@@ -9,9 +9,9 @@ permalink: /docs/best-practices
 
 Here, we show some best practices in working with Compass.
 
-## Information retrieval with mutations
+## Specify how your response should look like
 
-Usually, the mutation is only used for the creation, deletion or update of a resource. The response of a mutation is often held minimal. We recommend to have more verbose responses to take the information for further steps. For example, if we create an Application like this, we only get minimal information and might have to fetch more information later on:
+In mutations and queries, you can exactly specify how the API response should look like. We recommend to have more verbose responses to take the information for further steps. For example, if we create an Application like this, we only get minimal information and might have to fetch more information later on:
 
 ```graphql
 mutation {
@@ -27,7 +27,6 @@ mutation {
   ) {
     id
     name
-    labels
   }
 }
 ```
@@ -48,13 +47,21 @@ mutation {
   ) {
     id
     name
-    labels
     # this is more helpful
+    labels
     webhooks {
       id
       type
       url
     }
+    apis {
+      id
+      name
+      version {
+        value
+      }
+    }
+    # this is more helpful
   }
 }
 ```

@@ -7,20 +7,20 @@ permalink: /docs/tutorial
 
 # Tutorial
 
-In this tutorial we will demonstrate some very common uses of Compass. We start with a blank landscape and will create every component ourselved until we have reached a state that is representative to what most customers have. We recommend using the [GraphQL Playground](https://director.compass.cluster.extend.cx.cloud.sap/) to walk through the tutorial. Alternatively, you can use the following button to import a Postman collection:
+In this tutorial we will demonstrate some very common uses of Compass. We start with a blank landscape and will create every component ourselves until we have reached a state that is representative. We recommend using the [GraphQL Playground](https://director.compass.cluster.extend.cx.cloud.sap/) to walk through the tutorial. Alternatively, you can use the following button to import a Postman collection:
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/8605900361a34a6f4100)
 
 In our case, we will imagine a large enterprise which has some applications that need to be connected to cluster runtimes. We will also talk through some realistic changes.
 
-**Desired outcome:**
-- multiple runtimes for different environment (development, production, ...)
-- multiple applications with exposed APIs
-- handling a change in the landscape
+**What we cover here:**
+- two runtimes for different environments (development, production, ...)
+- one application with an exposed APIs
+- add a Webhook to our Application
 
 ## Setting up the landscape
 
-We will create our two Runtimes (**prod** and **dev**) first. After, we can create our Application in a plain version without any APIs. These requests create the runtimes:
+We will create our two Runtimes (**prod** and **dev**) first. These requests create the runtimes:
 
 ```graphql
 mutation {
@@ -82,9 +82,8 @@ mutation {
 
 ## Adding a Webhook
 
-To make our application reachable via callbacks, we will no add a webhook afterwards.
-
-First, we get the id of our application since it is a parameter of the `addWebhook()` mutation:
+To make our application reachable via callbacks, we will now add a webhook afterwards.  
+First, we **get the id of our application** since it is a parameter of the `addWebhook()` mutation. You can see all available mutations in the [Spec](http://localhost:4000/assets/graphql-doc/mutation.doc.html):  
 
 ```graphql
 query {
@@ -98,7 +97,7 @@ query {
 }
 ```
 
-The result may look similar to this:
+The **result** may look similar to this:
 
 ```json
 {
@@ -134,7 +133,7 @@ mutation {
 
 ## Updating a Webhook
 
-Now we have added a webhook to our Application that can react on changed configurations. But often even the webhook endpoints of an API might change. Our ERP application now has a new version of its webhook. To deal with this, we will use the mutation `updateWebhook`.
+Often, even the webhook endpoints of an API might change. Our ERP application now has a new version of its webhook. To deal with this, we will use the mutation `updateWebhook`.
 
 Again, we first find the id of our webhook because it is a necessary input parameter for the mutation:
 

@@ -36,3 +36,9 @@ If you open the playground you will see the UI with its fields. The following im
 5. Use the button in the middle to execute your request. Alternatively, use the shortcut ``CTRL+Enter``.
 6. The right-hand side shows the response for your request.
 7. Embedded schema and documentation for quick references.
+
+## Use the specification
+
+The [GraphQL Schema](/assets/graphql-doc/index.html) is the most important resource concerning types, attributes and objects. Make sure to use the search bar and clickable elements within an object description. By clicking through the types, you get an insight on how to build your own requests.
+
+![spec](/assets/images/spec.png)

@@ -21,7 +21,7 @@ With Compass you can manage multiple Kyma runtimes and their connected applicati
 
 ## What problem does Compass solve?
 
-Managing multiple runtimes and applications in a central place becomes complex in large enterprises. Suppose, you have to deal with frequent changes in the runtimes, but not every external application such as your ERP or CRM system can easily adapt to this. With Compass, these changes are managed using a single tool and you can keep track of the whole landscape.
+Managing multiple **runtimes and applications** in a central place becomes complex in large enterprises. Suppose, you have to deal with frequent changes in the runtimes, but not every external application such as your ERP or CRM system can easily adapt to this. With Compass, these changes are managed using a single tool and you can keep track of the whole landscape.
 
 The following illustration shows how Compass serves as a Management Plane for Applications and Runtimes:
 

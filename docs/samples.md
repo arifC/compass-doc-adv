@@ -15,6 +15,9 @@ This page covers some common examples of using Compass. While working on the sam
 
 ### Create a runtime
 
+Only a small selection of mandatory fields is necessary.  
+Also see [Mutations](http://localhost:4000/assets/graphql-doc/mutation.doc.html).
+
 ```graphql
 mutation {
   createRuntime(
@@ -32,6 +35,9 @@ mutation {
 
 ### Get all runtimes
 
+For all specifiable Runtime properties see the [Runtime Specification](http://localhost:4000/assets/graphql-doc/runtime.doc.html).  
+Also see [Queries](http://localhost:4000/assets/graphql-doc/query.doc.html).
+
 ```graphql
 query {
  runtimes {
@@ -48,6 +54,9 @@ query {
 
 ### Get a specific runtime
 
+The runtime query only takes the `id` as an input.  
+Also see [Queries](http://localhost:4000/assets/graphql-doc/query.doc.html).
+
 ```graphql
 query {
   runtime(id: "123abc") {
@@ -61,6 +70,9 @@ query {
 ## Application
 
 ### Create an application
+
+To see all properties of the input for this mutation, see the [Application Specification](http://localhost:4000/assets/graphql-doc/applicationinput.doc.html).  
+Also see [Mutations](http://localhost:4000/assets/graphql-doc/mutation.doc.html).
 
 ```graphql
 mutation {
@@ -87,6 +99,8 @@ mutation {
 ```
 
 ### Get all applications
+
+Also see [Queries](http://localhost:4000/assets/graphql-doc/query.doc.html).
 
 ```graphql
 query {
@@ -144,6 +158,9 @@ query {
 
 ### Get a specific application
 
+The only parameter for the `application()` query is the `id`.  
+Also see [Queries](http://localhost:4000/assets/graphql-doc/query.doc.html).
+
 ```graphql
 query {
   application(id: "123abc") {
@@ -156,6 +173,29 @@ query {
         version
       }
     }
+  }
+}
+```
+
+### Adding a resource to an application
+
+If you have an application and want to add something to it, make sure you have the `id` ready. Then use one of the `add...()` mutations like `addAPI()` or `addWebhook()`.  
+For example like this:  
+
+```graphql
+mutation {
+  addEventAPI(
+    applicationID: "<you_should_have_this>"
+    in: { 
+      name: "Test"
+      spec: { 
+        format: YAML
+        eventSpecType: ASYNC_API 
+      }
+    }
+  ) {
+    id
+    name
   }
 }
 ```
