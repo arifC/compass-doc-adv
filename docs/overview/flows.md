@@ -31,5 +31,3 @@ API registration phase is a process of registering new API and Event API definit
 To create a new Runtime, Administrator sends proper request to the [Runtime Provisioner](/docs/glossary). Runtime Provisioner requests Runtime configuration from Director, and one-time token from Connector. Runtime Provisioner provisions Runtime, and then injects the configuration with one-time token. [Runtime Agent](./../terminology.md#runtime-agent) uses this token to set-up trusted connection between Management Plane and Runtime Agent.
 
 ![runtime-creation](/assets/images/runtime-creation.svg)
-
-When Runtime is ready, Runtime Agent notifies Director about its status. When the Director receives notification that a Runtime is ready, it passes the notification for every Application in group assigned to the Runtime via [Application Webhook API](/docs/glossary). See the [Application configuration update diagram](#application-configuration-update) for Runtime ready notification example.

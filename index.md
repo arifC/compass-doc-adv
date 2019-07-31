@@ -8,7 +8,7 @@ permalink: /
 
 # General Information
 
-Compass (aka Management Plane Services) provides ways to register, group, and manage your applications across multiple Kyma runtimes in a multi-tenant fashion.
+<p style="text-align: center">Compass (aka Management Plane Services) provides ways to manage your Applications across Kyma Runtimes in a multi-tenant fashion.</p>
 {: .fs-6 .fw-400}
 
 This documentation covers both conceptual and technical topics around Compass.
