@@ -22,7 +22,7 @@ The **Gateway** component serves as the main Gateway that extracts the tenant he
 
 ## Director
 
-The **Director** component exposes a GraphQL API that can be accessed through the Gateway component. This is also the API we provide in the [Specification](/assets/graphql-doc/index.html) and [Playground](https://director.compass.cluster.extend.cx.cloud.sap). It contains all the business logic required to handle Applications and Runtimes registration as well as health checks. This information is managed through the Director's interaction with the Registry. The Director provides all the necessary functionality to manage an application landscape.
+The **Director** component exposes a **GraphQL API** that can be accessed through the Gateway component. This is also the API we provide in the [Specification](/assets/graphql-doc/index.html) and [Playground](https://director.compass.cluster.extend.cx.cloud.sap). It contains all the business logic required to handle Applications and Runtimes registration as well as health checks. This information is managed through the Director's interaction with the Registry.
 
 ## Cockpit
 

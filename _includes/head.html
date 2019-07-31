@@ -10,9 +10,9 @@
     {% endif %}
   {% endif %}
 
-  <link rel="shortcut icon" href="{{ "favicon.ico" | absolute_url }}" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ "favicon.ico" | relative_url }}" type="image/x-icon">
 
-  <link rel="stylesheet" href="{{ "/assets/css/compass-doc.css" | absolute_url }}">
+  <link rel="stylesheet" href="{{ "/assets/css/compass-doc.css" | relative_url }}">
 
   {% if site.ga_tracking != nil %}
     <script>
@@ -24,9 +24,9 @@
   {% endif %}
 
   {% if site.search_enabled != nil %}
-    <script type="text/javascript" src="{{ "/assets/js/vendor/lunr.min.js" | absolute_url }}"></script>
+    <script type="text/javascript" src="{{ "/assets/js/vendor/lunr.min.js" | relative_url }}"></script>
   {% endif %}
-  <script type="text/javascript" src="{{ "/assets/js/compass-doc.js" | absolute_url }}"></script>
+  <script type="text/javascript" src="{{ "/assets/js/compass-doc.js" | relative_url }}"></script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 

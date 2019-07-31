@@ -158,7 +158,7 @@ query {
 
 ### Get a specific application
 
-The only parameter for the `application()` query is the `id`.  
+The **only possible parameter** for the `application()` query is the `id`.  
 Also see [Queries](http://localhost:4000/assets/graphql-doc/query.doc.html).
 
 ```graphql

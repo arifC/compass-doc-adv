@@ -12,7 +12,7 @@ This page contains the three challenges to solve during this study. They increas
 ## Task 1 - Runtime Status
 
 **Description**  
-The system already manages some runtimes. We would like to know the status of the runtime with the name "production". The status includes the condition and the timestamp. We need both information for this task.
+The system already manages some runtimes. We would like to know the **status** of the runtime with the **name "production"**. The status includes the **condition** and the **timestamp**. We need both information for this task.
 
 **Acceptance Criteria**  
 Output shows:  
@@ -24,7 +24,7 @@ Output shows:
 ## Task 2 - Application with Documents
 
 **Description**  
-Suppose we want to create an application that represents Compass itself. Applications can also contain "Documents" which ideally contain some descriptive information about the application. Create an application that contains one document. The document is a markdown document and contains the "General Information" sentence from the [Introduction](/) page.
+Suppose we want to **create an application** that represents Compass itself. Applications can also contain **"Documents"** which ideally contain some descriptive information about the application. Create an application that contains one document. The document is a **markdown** document and contains the "General Information" sentence from the [Introduction](/) page as data.
 
 **Acceptance Criteria**  
 Output shows:  
@@ -36,7 +36,7 @@ Output shows:
 ## Task 3 - Add API to Application
 
 **Description**  
-Now we will also create an API for our application. The recently created application only has a document so far. In this task you will add the API. The specification and version of this API must be in line with the other application (name: `existingApplication`) which is already in the system. The targetURL for our API will be the one you can find in the address bar of the playground.
+Now we will also **add an API for our application**. The recently created application only has a document so far. In this task you will **add the API**. The specification and version of this API must be in line with the other application (**name: "existingApplication"**) which is already in the system. The targetURL for our API will be the one you can find in the address bar of the playground.
 
 **Acceptance Criteria**  
 Output shows:  

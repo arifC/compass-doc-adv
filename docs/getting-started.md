@@ -11,21 +11,13 @@ This page is intended for developers who want to start working with Compass. We 
 
 ## Before you start
 
-Before making any API requests, we want to introduce the tools we offer you for interacting with the API. For now, you don't need to install anything. This documentation provides tools to "play around. Make sure you find and check the most important resources:
+Before making API requests, we want to introduce the tools we offer you for interacting with the API. This documentation provides tools to "play around". Make sure you find and check the **most important resources**:
 - [Specification](/assets/graphql-doc/index.html) & [Playground](https://director.compass.cluster.extend.cx.cloud.sap/) (upper right of the page)
 - Components & Flows in the [Overview](/docs/overview)
 
-The Specification & Playground will help you with the technicalities of the API, while the Overview provides all the conceptual knowledge to really understand Compass as a whole.
-
 ## GraphQL Playground
 
-The [GraphQL Playground](https://director.compass.cluster.extend.cx.cloud.sap/) consists of an interface for GraphQL requests and responses. You can find the original project on [Github](https://github.com/prisma/graphql-playground). You can interact with the API of the **Director** component of compass. In total, the playground comprises the following components:
-
-- runtime environment for Director
-- embedded technical specification
-- embedded documentation
-
-If you open the playground you will see the UI with its fields. The following image, points out the most important features.
+The [GraphQL Playground](https://director.compass.cluster.extend.cx.cloud.sap/) consists of an interface for GraphQL requests and responses. You can find the original project on [Github](https://github.com/prisma/graphql-playground). You can interact with the API of the **Director** component of compass. If you open the playground you will see the UI with its fields. The following image, points out the most important features.
 
 ![playground](/assets/images/playground.png)
 

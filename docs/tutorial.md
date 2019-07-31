@@ -7,7 +7,7 @@ permalink: /docs/tutorial
 
 # Tutorial
 
-In this tutorial we will demonstrate some very common uses of Compass. We start with a blank landscape and will create every component ourselves until we have reached a state that is representative. We recommend using the [GraphQL Playground](https://director.compass.cluster.extend.cx.cloud.sap/) to walk through the tutorial. Alternatively, you can use the following button to import a Postman collection:
+In this tutorial we will demonstrate some **very common uses** of Compass. We start with a blank landscape and will create every component ourselves until we have reached a state that is representative. We recommend using the [GraphQL Playground](https://director.compass.cluster.extend.cx.cloud.sap/) to walk through the tutorial. Alternatively, you can use the following button to import a Postman collection:
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/8605900361a34a6f4100)
 
@@ -20,7 +20,7 @@ In our case, we will imagine a large enterprise which has some applications that
 
 ## Setting up the landscape
 
-We will create our two Runtimes (**prod** and **dev**) first. These requests create the runtimes:
+We will create our two Runtimes (**prod** and **dev**) first. These requests **create the Runtimes**:
 
 ```graphql
 mutation {
@@ -54,7 +54,7 @@ mutation {
 }
 ```
 
-Our application in this tutorial will be an ERP enterprise system. We will call it SAP ERP. This request creates the Application in its simplest form.
+Our application in this tutorial will be an ERP enterprise system. We will call it SAP ERP. This request **creates the Application** in its simplest form.
 
 ```graphql
 mutation {
@@ -116,7 +116,7 @@ The **result** may look similar to this:
 }
 ```
 
-Using the id we can now add our webhook. For the definiton of a webhook, please see the [Specification](http://localhost:4000/assets/graphql-doc/webhookinput.doc.html).
+Using the id we can now **add our webhook**. For the definiton of a webhook, please see the [Specification](http://localhost:4000/assets/graphql-doc/webhookinput.doc.html).
 
 ```graphql
 mutation {
