@@ -14,7 +14,7 @@ The Management Plane is an abstract definition and set of exposed functionality 
 
 ## Connector
 
-The **Connector** component exposes a GraphQL API that can be accessed directly, its responsibility is establishing trust among Applications, Management Plane and [Runtimes](/docs/glossary.md#Runtime). The Connector, as the name indicates, plays a major role in connecting external applications to the Management Plane.
+The **Connector** component exposes a GraphQL API that can be accessed directly, its responsibility is establishing trust among Applications, Management Plane and [Runtimes](/docs/glossary). The Connector, as the name indicates, plays a major role in connecting external applications to the Management Plane.
 
 ## Gateway
 

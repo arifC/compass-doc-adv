@@ -2,7 +2,7 @@
 layout: default
 title: Glossary
 nav_order: 10
-permalink: docs/glossary
+permalink: /docs/glossary
 ---
 
 # Glossary

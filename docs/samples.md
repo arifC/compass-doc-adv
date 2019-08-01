@@ -169,8 +169,9 @@ query {
     labels
     eventAPIs {
       data {
-        spec
-        version
+        version {
+          value
+        }
       }
     }
   }

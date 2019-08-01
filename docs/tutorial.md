@@ -131,6 +131,12 @@ mutation {
 }
 ```
 
+Besides adding webhooks to applications, you have **more possibilities** from here. Such as:
+
+- `addApi`
+- `addEventAPI`
+- `addDocument`
+
 ## Updating a Webhook
 
 Often, even the webhook endpoints of an API might change. Our ERP application now has a new version of its webhook. To deal with this, we will use the mutation `updateWebhook`.
