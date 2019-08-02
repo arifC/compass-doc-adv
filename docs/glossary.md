@@ -11,12 +11,12 @@ We summarize the most important and frequent used terms in this glossary.
 
 | Term         | Description       |
 |:-------------|:------------------|
-| [Application](#Application)  | Existing system registered to MP with its API and Event Definitions. |
+| Application | Existing system registered to MP with its API and Event Definitions. |
 | [Connector](/docs/overview/components) | Compass component handling the first pairing and registration of Applications. |
 | [Director](/docs/overview/components) | Compass component responsible for the management of Applications and Runtimes. |
 | [Gateway](/docs/overview/components) | Compass component that handles all incoming API requests. |
-| [Management Plane](#Management Plane) | Includes Compass, Runtime Provisioners and Cockpit components. |
-| [Runtime](#Runtime) | Any system that can configure itself according to the configuration provided by the Management Plane. Takes care about a customer workload. |
+| Management Plane | Includes Compass, Runtime Provisioners and Cockpit components. |
+| Runtime | Any system that can configure itself according to the configuration provided by the Management Plane. Takes care about a customer workload. |
 
 ---
 

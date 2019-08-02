@@ -46,7 +46,9 @@ query {
    name
    labels
    description
-   status {condition}
+   status {
+     condition
+   }
   }
  }
 }
@@ -112,6 +114,7 @@ query {
       apis {
         data {
           name
+          targetURL
         }
       }
       documents {

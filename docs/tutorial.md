@@ -11,8 +11,6 @@ In this tutorial we will demonstrate some **very common uses** of Compass. We st
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/8605900361a34a6f4100)
 
-In our case, we will imagine a large enterprise which has some applications that need to be connected to cluster runtimes. We will also talk through some realistic changes.
-
 **What we cover here:**
 - two runtimes for different environments (development, production, ...)
 - one application with an exposed APIs
