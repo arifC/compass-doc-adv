@@ -83,7 +83,7 @@ mutation {
 ## Adding a Webhook
 
 To make our application reachable via callbacks, we will now add a webhook afterwards.  
-First, we **get the id of our application** since it is a parameter of the `addWebhook()` mutation. You can see all available mutations in the [Spec](http://localhost:4000/assets/graphql-doc/mutation.doc.html):  
+First, we **get the id of our application** since it is a parameter of the `addWebhook()` mutation. You can see all available mutations in the [Spec](/assets/graphql-doc/mutation.doc.html):  
 
 ```graphql
 query {
@@ -116,7 +116,7 @@ The **result** may look similar to this:
 }
 ```
 
-Using the id we can now **add our webhook**. For the definiton of a webhook, please see the [Specification](http://localhost:4000/assets/graphql-doc/webhookinput.doc.html).
+Using the id we can now **add our webhook**. For the definiton of a webhook, please see the [Specification](/assets/graphql-doc/webhookinput.doc.html).
 
 ```graphql
 mutation {

@@ -16,7 +16,7 @@ This page covers some common examples of using Compass. While working on the sam
 ### Create a runtime
 
 Only a small selection of mandatory fields is necessary.  
-Also see [Mutations](http://localhost:4000/assets/graphql-doc/mutation.doc.html).
+Also see [Mutations](/assets/graphql-doc/mutation.doc.html).
 
 ```graphql
 mutation {
@@ -35,8 +35,8 @@ mutation {
 
 ### Get all runtimes
 
-For all specifiable Runtime properties see the [Runtime Specification](http://localhost:4000/assets/graphql-doc/runtime.doc.html).  
-Also see [Queries](http://localhost:4000/assets/graphql-doc/query.doc.html).
+For all specifiable Runtime properties see the [Runtime Specification](/assets/graphql-doc/runtime.doc.html).  
+Also see [Queries](/assets/graphql-doc/query.doc.html).
 
 ```graphql
 query {
@@ -55,7 +55,7 @@ query {
 ### Get a specific runtime
 
 The runtime query only takes the `id` as an input.  
-Also see [Queries](http://localhost:4000/assets/graphql-doc/query.doc.html).
+Also see [Queries](/assets/graphql-doc/query.doc.html).
 
 ```graphql
 query {
@@ -71,8 +71,8 @@ query {
 
 ### Create an application
 
-To see all properties of the input for this mutation, see the [Application Specification](http://localhost:4000/assets/graphql-doc/applicationinput.doc.html).  
-Also see [Mutations](http://localhost:4000/assets/graphql-doc/mutation.doc.html).
+To see all properties of the input for this mutation, see the [Application Specification](/assets/graphql-doc/applicationinput.doc.html).  
+Also see [Mutations](/assets/graphql-doc/mutation.doc.html).
 
 ```graphql
 mutation {
@@ -100,7 +100,7 @@ mutation {
 
 ### Get all applications
 
-Also see [Queries](http://localhost:4000/assets/graphql-doc/query.doc.html).
+Also see [Queries](/assets/graphql-doc/query.doc.html).
 
 ```graphql
 query {
@@ -159,7 +159,7 @@ query {
 ### Get a specific application
 
 The **only possible parameter** for the `application()` query is the `id`.  
-Also see [Queries](http://localhost:4000/assets/graphql-doc/query.doc.html).
+Also see [Queries](/assets/graphql-doc/query.doc.html).
 
 ```graphql
 query {
