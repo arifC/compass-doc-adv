@@ -22,7 +22,7 @@ We summarize the most important and frequent used terms in this glossary.
 
 ## Application
 
-Existing system registered to *MP* with its *API and Event Definitions*.
+Existing system registered to Management Plane with its *API and Event Definitions*.
 
 ### API Defintion
 
